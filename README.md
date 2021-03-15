@@ -7,7 +7,7 @@ Nginx Web Application Firewall (WAF) Module
 ## Syntax
 
 ```
-            Syntax:	waf_target uri | off;
+             Syntax:	waf_target uri | off;
              Default:	waf_target off;
              Context:	http, server, location
 ```
