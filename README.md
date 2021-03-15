@@ -19,43 +19,25 @@ http {
 
   server {
 
-    waf_target /waf_target_common;
+    waf_target /waf_target_A;
 
-    location = /login {
+    location / {
+        ......
     }
     
-    location ~* .(jpg|jpeg)$ {
-    }
-
-    location = /heartbeat {
-
-        waf_target /waf_tartget_heartbeat;
-    }
-
-    location = /50x.html {
-
-        waf_target off;
-    }
-
-
-    ######### common waf cluster
-    location = /waf_target_common {
-        proxy_pass http://xxx.xxx.xxx.xxx$request_uri;
-    }
-
-    ######### heartbeat waf cluster
-    location = /waf_target_heartbeat {
-        proxy_pass http://yyy.yyy.yyy.yyy$request_uri;
+    ######### A waf cluster
+    location = /waf_target_A {
+        proxy_pass http://A.A.A.A$request_uri;
     }
   }
 }
 ```
 ```
-login jpg jpeg will be targeted to common waf cluster
+all requests will first be targeted to waf cluster
 
-heaetbet will be targeted to heartbeat waf cluster
+if waf return 200, a request continues,
 
-50x.html will not be targeted to any waf cluster
+or 500 will be returned to the client.
 ```
 
 ## Wiki
