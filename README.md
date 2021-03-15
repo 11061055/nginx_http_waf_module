@@ -19,15 +19,14 @@ http {
 
   server {
 
-    waf_target /waf_target_A;
+    waf_target /waf_name;
 
     location / {
         ......
     }
     
-    ######### A waf cluster
-    location = /waf_target_A {
-        proxy_pass http://A.A.A.A$request_uri;
+    location = /waf_name {
+        proxy_pass http://x.x.x.x$request_uri;
     }
   }
 }
